@@ -26,17 +26,21 @@ jobs:
     if: github.event_name == 'push'    
     steps:
       - uses: actions/checkout@v2
+
       - name: Set up Go
         uses: actions/setup-go@v2
         with:
           go-version: 1.15
-      - name: build the app
-        run: |
-          mkdir -p fs
-	      GOOS=linux GOARCH=amd64 go build -o fs/notify ./main.go
+
+      - name: create binary directory
+        run: mkdir -p fs
+
+      - name: build notify
+        run: GOOS=linux GOARCH=amd64 go build -o fs/notify ./main.go
 
       - name: Build image
         run: docker build . --file Dockerfile --tag $IMAGE_NAME
+
       - name: Log into registry
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
 
