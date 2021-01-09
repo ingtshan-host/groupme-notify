@@ -33,7 +33,7 @@ jobs:
       - name: build the app
         run: |
           mkdir -p fs
-	        GOOS=linux GOARCH=amd64 go build -o fs/notify ./main.go
+	      GOOS=linux GOARCH=amd64 go build -o fs/notify ./main.go
 
       - name: Build image
         run: docker build . --file Dockerfile --tag $IMAGE_NAME
