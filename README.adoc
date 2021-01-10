@@ -9,7 +9,28 @@ https://hub.docker.com/r/nhomble93/groupme-notify[Docker Hub]
 toc::[]
 
 == Usage
+You can send messages on behalf of yourself with your `token` and `groupId` or you
+can delegate to a bot with `botId` assigned to your group.
 
+[source,text]
+Arguments to the executable are:
+----
+  -botId string
+        id of the bot post the message
+  -groupId string
+        id of the group to post the message into
+  -m string
+        the message
+----
+
+## Examples
+You can run the go file directly:
+[source,bash]
+----
+$ go run main.go -botId 9f0acd0c3bd81330d9c48ddb71 -m notify
+----
+
+Or against the built container:
 [source,bash]
 ----
 $ docker run \
