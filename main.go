@@ -5,6 +5,7 @@ import (
 	"encoding/base64"
 	"flag"
 	"fmt"
+
 	"github.com/nhomble/groupme.go/groupme"
 )
 
