@@ -19,6 +19,7 @@ func main() {
 		panic("groupId is empty")
 	}
 	id := fmt.Sprintf("%d%d", rand.Int63(), rand.Int63())
+	fmt.Printf("messageId=%s\n", id)
 	provider := groupme.EnvironmentTokenProvider{}
 	client, _ := groupme.NewClient(provider)
 	_, err := client.Messages.Send(*groupId, &groupme.SendMessageCommand{
