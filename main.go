@@ -16,7 +16,7 @@ var (
 
 func main() {
 	flag.Parse()
-	if len(*groupID) <= 0 && len(*botID) <= 0 {
+	if len(*groupID) == 0 && len(*botID) == 0 {
 		flag.Usage()
 		panic("groupId and botId cannot both be empty")
 	}
