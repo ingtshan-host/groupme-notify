@@ -9,14 +9,14 @@ import (
 )
 
 var (
-	groupId = flag.String("groupId", "", "id of the group to post the message into")
-	botId   = flag.String("botId", "", "id of the bot post the message")
+	groupID = flag.String("groupId", "", "id of the group to post the message into")
+	botID   = flag.String("botId", "", "id of the bot post the message")
 	message = flag.String("m", "", "the message")
 )
 
 func main() {
 	flag.Parse()
-	if len(*groupId) <= 0 && len(*botId) <= 0 {
+	if len(*groupID) <= 0 && len(*botID) <= 0 {
 		flag.Usage()
 		panic("groupId and botId cannot both be empty")
 	}
@@ -27,13 +27,13 @@ func main() {
 	client, _ := groupme.NewClient(provider)
 
 	var err error
-	if len(*botId) > 0 {
+	if len(*botID) > 0 {
 		err = client.Bots.Send(groupme.BotMessageCommand{
-			BotID:   *botId,
+			BotID:   *botID,
 			Message: *message,
 		})
 	} else {
-		_, err = client.Messages.Send(*groupId, &groupme.SendMessageCommand{
+		_, err = client.Messages.Send(*groupID, &groupme.SendMessageCommand{
 			SourceGuid: id,
 			Text:       *message,
 		})
