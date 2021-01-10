@@ -1,11 +1,11 @@
 package main
 
 import (
+	"crypto/rand"
+	"encoding/base64"
 	"flag"
 	"fmt"
 	"github.com/nhomble/groupme.go/groupme"
-	"math/rand"
-	"time"
 )
 
 var (
@@ -20,8 +20,8 @@ func main() {
 		flag.Usage()
 		panic("groupId and botId cannot both be empty")
 	}
-	rand.Seed(time.Now().UnixNano())
-	id := fmt.Sprintf("%d%d", rand.Int63(), rand.Int63())
+
+	id := randomString(32)
 	fmt.Printf("messageId=%s\n", id)
 	provider := groupme.EnvironmentTokenProvider{}
 	var err error
@@ -43,6 +43,15 @@ func main() {
 	must(err)
 }
 
+// a good enough simple random string, groupme only requires uniqueness for a minute
+func randomString(l int) string {
+	b := make([]byte, l)
+	_, err := rand.Read(b)
+	must(err)
+	return base64.URLEncoding.EncodeToString(b)
+}
+
+// must succeed
 func must(err error) {
 	if err != nil {
 		panic(err)
