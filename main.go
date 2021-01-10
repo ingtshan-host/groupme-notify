@@ -15,7 +15,8 @@ var (
 func main() {
 	flag.Parse()
 	if len(*groupId) <= 0 {
-		panic(flag.ErrHelp)
+		flag.Usage()
+		panic("groupId is empty")
 	}
 	id := fmt.Sprintf("%d%d", rand.Int63(), rand.Int63())
 	provider := groupme.EnvironmentTokenProvider{}
