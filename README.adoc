@@ -1,0 +1,17 @@
+:toc: macro
+= groupme-notify
+
+[.lead]
+basic container image to send messages to groupme
+
+https://hub.docker.com/r/nhomble93/groupme-notify[Docker Hub]
+
+== Usage
+
+[source,bash]
+----
+$ docker run -t \
+    -e GO_GROUPME_API_TOKEN \
+    docker.pkg.github.com/nhomble/groupme-notify/groupme-notify \
+    /notify -groupId $GROUP -m $MSG
+----
