@@ -6,6 +6,8 @@ basic container image to send messages to groupme
 
 https://hub.docker.com/r/nhomble93/groupme-notify[Docker Hub]
 
+toc::[]
+
 == Usage
 
 [source,bash]
