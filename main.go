@@ -24,9 +24,11 @@ func main() {
 	id := fmt.Sprintf("%d%d", rand.Int63(), rand.Int63())
 	fmt.Printf("messageId=%s\n", id)
 	provider := groupme.EnvironmentTokenProvider{}
-	client, _ := groupme.NewClient(provider)
-
 	var err error
+
+	client, err := groupme.NewClient(provider)
+	must(err)
+
 	if len(*botID) > 0 {
 		err = client.Bots.Send(groupme.BotMessageCommand{
 			BotID:   *botID,
